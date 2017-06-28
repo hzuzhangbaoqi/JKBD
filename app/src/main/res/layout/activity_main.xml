@@ -5,8 +5,49 @@
     android:layout_height="fill_parent"
     android:background="@mipmap/main"
     android:theme="@android:style/Theme.NoTitleBar">
-
-
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center">
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:drawableTop="@mipmap/main_menu_exam"
+        android:text="随机测试"
+        android:background="@null"
+         />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:drawableTop="@mipmap/main_menu_result"
+        android:text="全部测试"
+        android:background="@null"
+         />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/main_menu_message"
+            android:text="设置"
+            android:background="@null"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/main_menu_exit"
+            android:text="退出"
+            android:background="@null"
+             />
+    </LinearLayout>
 
 </LinearLayout>
