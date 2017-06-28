@@ -17,6 +17,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         mcountDownTimer.start();
 
+
     }
 
     CountDownTimer mcountDownTimer = new CountDownTimer(5000, 1000) {
@@ -29,6 +30,7 @@ public class SplashActivity extends AppCompatActivity {
         public void onFinish() {
             Intent intent = new Intent(SplashActivity.this, MainActivity.class);
             startActivity(intent);
+            SplashActivity.this.finish();
         }
 
 
