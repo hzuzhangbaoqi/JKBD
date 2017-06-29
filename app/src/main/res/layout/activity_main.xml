@@ -14,9 +14,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:onClick="test"
         android:drawableTop="@mipmap/main_menu_exam"
         android:text="随机测试"
         android:background="@null"
+
          />
     <Button
         android:layout_width="match_parent"
@@ -45,6 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:drawableTop="@mipmap/main_menu_exit"
+            android:onClick="exit"
             android:text="退出"
             android:background="@null"
              />
