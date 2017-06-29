@@ -20,7 +20,7 @@ public class SplashActivity extends AppCompatActivity {
 
     }
 
-    CountDownTimer mcountDownTimer = new CountDownTimer(5000, 1000) {
+    CountDownTimer mcountDownTimer = new CountDownTimer(2000, 1000) {
         @Override
         public void onTick(long millisUntilFinished) {
 
