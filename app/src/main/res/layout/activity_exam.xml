@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/main">
 
@@ -13,10 +15,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/exam_title"
+        tools:text="@string/exam_title"
         android:layout_margin="15dp"
         android:textColor="#000"/>
-    <view
+    <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#000"
@@ -34,7 +36,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="这个标志是何含义?"
+            tools:text="这个标志是何含义?"
             android:textSize="18sp"/>
 
     </LinearLayout>
@@ -56,7 +58,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            tools:text=""
             android:textSize="18sp"/>
 
     </LinearLayout>
@@ -73,7 +75,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            tools:text=""
             android:textSize="18sp"/>
 
     </LinearLayout>
@@ -90,7 +92,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            tools:text=""
             android:textSize="18sp"/>
 
     </LinearLayout>
@@ -107,7 +109,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            tools:text=""
             android:textSize="18sp"/>
     </LinearLayout>
     <LinearLayout
