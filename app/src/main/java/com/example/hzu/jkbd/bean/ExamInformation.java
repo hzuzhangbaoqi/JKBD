@@ -18,6 +18,7 @@ public class ExamInformation {
     private int limitTime;
     private int questionCount;
 
+
     public String getSubjectTitle() {
         return subjectTitle;
     }
@@ -49,4 +50,12 @@ public class ExamInformation {
     public void setQuestionCount(int questionCount) {
         this.questionCount = questionCount;
     }
-}
+
+    @Override
+    public String toString() {
+        return  "考试科目:" + subjectTitle + "\n" +
+                 "考试数量:" + questionCount + "\n"+
+                 "考题时间:" + limitTime +"分钟";
+        }
+    }
+
