@@ -147,7 +147,8 @@
             android:drawableLeft="@mipmap/exam_pre32x32"
             android:background="@null"
             android:text="上一题"
-            android:layout_alignParentLeft="true"/>
+            android:layout_alignParentLeft="true"
+            android:layout_margin="20dp"/>
         <Button
             android:id="@+id/btn_next"
             android:layout_width="wrap_content"
@@ -155,7 +156,8 @@
             android:drawableRight="@mipmap/exam_next32x32"
             android:background="@null"
             android:text="下一题"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:layout_margin="20dp"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -163,7 +165,8 @@
             android:layout_below="@+id/btn_next"
             android:background="@null"
             android:text="交卷"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:layout_margin="20dp"/>
 
     </RelativeLayout>
 </LinearLayout>
