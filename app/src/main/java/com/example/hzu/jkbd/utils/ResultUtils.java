@@ -34,10 +34,10 @@ public class ResultUtils {
             if(!jsonObject.isNull("result")) {
                 JSONArray array = jsonObject.getJSONArray("result");
                 if (array != null) {
-                    List<Result.ResultBean> list = new ArrayList<Result.ResultBean>();
+                    List<Question> list = new ArrayList<Question>();
                     for (int i = 0; i < array.length(); i++) {
                         JSONObject jsonGroupAvatar = array.getJSONObject(i);
-                        Result.ResultBean ga = new Gson().fromJson(jsonGroupAvatar.toString(), Result.ResultBean.class);
+                        Question ga = new Gson().fromJson(jsonGroupAvatar.toString(), Question.class);
                         list.add(ga);
                     }
                     result.setResult(list);
@@ -46,11 +46,11 @@ public class ResultUtils {
             }else{
                 JSONArray array = new JSONArray(jsonStr);
                 if (array != null) {
-                    List<Result.ResultBean> list = new ArrayList<Result.ResultBean>();
+                    List<Question> list = new ArrayList<Question>();
                     for (int i = 0; i < array.length(); i++) {
                         JSONObject jsonGroupAvatar = array.getJSONObject(i);
 
-                        Result.ResultBean ga = new Gson().fromJson(jsonGroupAvatar.toString(),Result.ResultBean.class);
+                        Question ga = new Gson().fromJson(jsonGroupAvatar.toString(),Question.class);
                         list.add(ga);
                     }
                     result.setResult(list);

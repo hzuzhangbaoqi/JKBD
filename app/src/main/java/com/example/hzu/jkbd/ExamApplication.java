@@ -9,7 +9,7 @@ import com.example.hzu.jkbd.bean.Result;
 import com.example.hzu.jkbd.utils.OkHttpUtils;
 import com.example.hzu.jkbd.utils.ResultUtils;
 import com.example.hzu.jkbd.bean.Question;
-import com.example.hzu.jkbd.bean.Result.ResultBean;
+
 import java.util.List;
 
 /**
@@ -56,9 +56,9 @@ public class ExamApplication extends Application {
                         .execute(new OkHttpUtils.OnCompleteListener<String>() {
                             @Override
                             public void onSuccess(String result) {
-                                Result result1= ResultUtils.getListResultFromJson(jsonStr);
+                                Result result1= ResultUtils.getListResultFromJson(result);
                                 if(result1!= null && result1.getError_code()==0){
-                                    List<Result.ResultBean> list= result1.getResult();
+                                    List<Question> list= result1.getResult();
                                     if(list!=null && list.size()>0){
                                       mExamList=list;
                                     }
