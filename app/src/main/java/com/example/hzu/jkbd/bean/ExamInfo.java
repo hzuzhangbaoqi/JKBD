@@ -4,7 +4,7 @@ package com.example.hzu.jkbd.bean;
  * Created by Administrator on 2017/6/29.
  */
 
-public class ExamInformation {
+public class ExamInfo {
 
     /**
      * subjectTitle : c1
