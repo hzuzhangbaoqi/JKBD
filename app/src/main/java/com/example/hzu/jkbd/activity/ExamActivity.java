@@ -42,6 +42,7 @@ public class ExamActivity extends AppCompatActivity{
     }
 
     private void initData() {
+
         ExamInfo examInfo =ExamApplication.getInstance().getmExamInfo();
         if (examInfo !=null){
             showData(examInfo);
@@ -65,6 +66,7 @@ public class ExamActivity extends AppCompatActivity{
                     .load(exam.getUrl())
                     .into(mImageView);
         }
+
     }
 
     private void showData(ExamInfo examInfo) {
