@@ -1,5 +1,6 @@
 package com.example.hzu.jkbd.dao;
 
+import android.content.Intent;
 import android.util.Log;
 
 import com.example.hzu.jkbd.ExamApplication;
@@ -27,10 +28,13 @@ import java.util.List;
                     public void onSuccess(ExamInfo result) {
                         Log.e("main", "result=" + result);
                         ExamApplication.getInstance().setmExamInfo(result);
-
+                        ExamApplication.getInstance().sendBroadcast(new Intent(ExamApplication.LOAD_EXAM_INFO)
+                                                     .putExtra(ExamApplication.LOAD_DATA_SUCCESS,true));
                     }
                     public void onError(String error) {
                         Log.e("main", "error=" + error);
+                        ExamApplication.getInstance().sendBroadcast(new Intent(ExamApplication.LOAD_EXAM_INFO)
+                                .putExtra(ExamApplication.LOAD_DATA_SUCCESS,false));
                     }
                 });
     }
