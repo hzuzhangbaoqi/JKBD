@@ -74,13 +74,13 @@ public class ExamActivity extends AppCompatActivity{
     private void initData() {
         if (isLoadExamInfo && isLoadQuestions) {
             ExamInfo examInfo = ExamApplication.getInstance().getmExamInfo();
-            if (examInfo != null) {
+           // if (examInfo != null) {
                 showData(examInfo);
-            }
+           // }
             List<Question> examList = ExamApplication.getInstance().getmExamList();
-            if (examList != null) {
+            //if (examList != null) {
                 showExam(examList);
-            }
+            //}
         }
     }
     private void showExam(List<Question> examList) {
@@ -115,25 +115,25 @@ public class ExamActivity extends AppCompatActivity{
         @Override
         public void onReceive(Context context, Intent intent) {
             boolean isSuccess=intent.getBooleanExtra(ExamApplication.LOAD_DATA_SUCCESS,false);
-            Log.e("LoadExamBroadcast","LoadExamBroadcast,isSuccess"+isSuccess);
+            //Log.e("LoadExamBroadcast","LoadExamBroadcast,isSuccess="+isSuccess);
+           //Log.e("LoadExamBroadcast","LoadExamBroadcast,isSuccess="+new Intent().getBooleanExtra(ExamApplication.LOAD_DATA_SUCCESS,false));
+            Log.e("LoadQuestionBroadcast","LoadQuestionBroadcast,isSuccess="+new Intent().getBooleanExtra(ExamApplication.LOAD_DATA_SUCCESS,false));
             if(isSuccess){
                 isLoadExamInfo =true;
             }
             initData();
         }
     }
-    class LoadQuestionBroadcast extends BroadcastReceiver{
+   class LoadQuestionBroadcast extends BroadcastReceiver{
         @Override
         public void onReceive(Context context, Intent intent) {
             boolean isSuccess=intent.getBooleanExtra(ExamApplication.LOAD_DATA_SUCCESS,false);
-            Log.e("LoadQuestionBroadcast","LoadQuestionBroadcast,isSuccess"+isSuccess);
+            Log.e("LoadQuestionBroadcast","LoadQuestionBroadcast,isSuccess="+isSuccess);
             if(isSuccess){
-                initData();
                 isLoadQuestions=true;
             }
             initData();
         }
     }
-
 
 }

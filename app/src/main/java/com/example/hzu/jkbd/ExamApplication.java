@@ -25,13 +25,13 @@ public class ExamApplication extends Application {
     ExamInfo mExamInfo;
     List<Question> mExamList;
     private static ExamApplication instance;
-    IExamBiz biz;
+    //IExamBiz biz;
 
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
-        biz=new ExamBiz();
+        //biz=new ExamBiz();
         //initData();
 
     }

@@ -41,25 +41,9 @@ import java.util.List;
 
     @Override
     public void loadQusetionLists() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-               /* OkHttpUtils<ExamInfo> utils = new OkHttpUtils<>(ExamApplication.getInstance());
-                String url = "http://101.251.196.90:8080/JztkServer/examInfo";
-                utils.url(url)
-                        .targetClass(ExamInfo.class)
-                        .execute(new OkHttpUtils.OnCompleteListener<ExamInfo>() {
-                            public void onSuccess(ExamInfo result) {
-                                Log.e("main", "result=" + result);
-                                mExamInfo=result;
-                            }
-                            public void onError(String error) {
-                                Log.e("main", "error=" + error);
-                            }
-                        });*/
                 OkHttpUtils<String> utils1=new OkHttpUtils<>(ExamApplication.getInstance());
-                String url2="http://101.251.196.90:8080/JztkServer/getQuestions?testType=rand";
-                utils1.url(url2)
+                String url="http://101.251.196.90:8080/JztkServer/getQuestions?testType=rand";
+                utils1.url(url)
                         .targetClass(String.class)
                         .execute(new OkHttpUtils.OnCompleteListener<String>() {
                             @Override
@@ -68,17 +52,15 @@ import java.util.List;
                                 if(result1!= null && result1.getError_code()==0){
                                     List<Question> list= result1.getResult();
                                     if(list!=null && list.size()>0){
+                                        Log.e("main", "resultQuestion=" + result);
                                        ExamApplication.getInstance().setmExamList(list);
                                     }
                                 }
-
                             }
 
                             public void onError(String error) {
                                 Log.e("main", "result=" + error);
                             }
                         });
-            }
-        }).start();
     }
 }
