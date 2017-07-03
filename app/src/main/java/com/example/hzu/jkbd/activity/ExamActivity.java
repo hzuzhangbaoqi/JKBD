@@ -7,7 +7,9 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.hzu.jkbd.ExamApplication;
@@ -27,11 +29,15 @@ import java.util.List;
  */
 
 public class ExamActivity extends AppCompatActivity{
-    TextView tvExamInfo,tvExamTitle,tvOp1,tvOp2,tvOp3,tvOp4;
+    TextView tvExamInfo,tvExamTitle,tvOp1,tvOp2,tvOp3,tvOp4,tvLoad;
+    LinearLayout layoutLoading;
     ImageView mImageView;
+
     IExamBiz biz;
     boolean isLoadExamInfo=false;
     boolean isLoadQuestions=false;
+    boolean isLoadExamInfoReceiver=false;
+    boolean isLoadQuestionsReceiver=false;
 
     LoadQuestionBroadcast mLoadQuestionBroadcast;
     LoadExamBroadcast mLoadExamBroadcast;
@@ -52,7 +58,7 @@ public class ExamActivity extends AppCompatActivity{
     }
 
     private void loadData() {
-        biz=new ExamBiz();
+        biz =new ExamBiz();
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -62,26 +68,35 @@ public class ExamActivity extends AppCompatActivity{
     }
 
     private void initView() {
+        layoutLoading=(LinearLayout) findViewById(R.id.layout_loading);
         tvExamInfo=(TextView) findViewById(R.id.tv_examinfo);
         tvExamTitle=(TextView) findViewById(R.id.tv_exam_title);
         tvOp1=(TextView) findViewById(R.id.tv_op1);
         tvOp2=(TextView) findViewById(R.id.tv_op2);
         tvOp3=(TextView) findViewById(R.id.tv_op3);
         tvOp4=(TextView) findViewById(R.id.tv_op4);
+        tvLoad=(TextView)findViewById(R.id.tv_load);
         mImageView=(ImageView) findViewById(R.id.im_exam_image);
     }
 
     private void initData() {
-        if (isLoadExamInfo && isLoadQuestions) {
-            ExamInfo examInfo = ExamApplication.getInstance().getmExamInfo();
-           // if (examInfo != null) {
+        if (isLoadQuestionsReceiver&isLoadExamInfoReceiver){
+            if (isLoadExamInfo && isLoadQuestions) {
+                layoutLoading.setVisibility(View.GONE);
+                ExamInfo examInfo = ExamApplication.getInstance().getmExamInfo();
+                // if (examInfo != null) {
                 showData(examInfo);
-           // }
-            List<Question> examList = ExamApplication.getInstance().getmExamList();
-            //if (examList != null) {
+                // }
+                List<Question> examList = ExamApplication.getInstance().getmExamList();
+                //if (examList != null) {
                 showExam(examList);
-            //}
+                //}
+            }
+            else{
+
+            }
         }
+
     }
     private void showExam(List<Question> examList) {
         Question exam = examList.get(0);
@@ -91,6 +106,7 @@ public class ExamActivity extends AppCompatActivity{
             tvOp2.setText(exam.getItem2());
             tvOp3.setText(exam.getItem3());
             tvOp4.setText(exam.getItem4());
+
             Picasso.with(ExamActivity.this)
                     .load(exam.getUrl())
                     .into(mImageView);
@@ -121,6 +137,7 @@ public class ExamActivity extends AppCompatActivity{
             if(isSuccess){
                 isLoadExamInfo =true;
             }
+            isLoadExamInfoReceiver=true;
             initData();
         }
     }
@@ -132,6 +149,7 @@ public class ExamActivity extends AppCompatActivity{
             if(isSuccess){
                 isLoadQuestions=true;
             }
+            isLoadQuestionsReceiver=true;
             initData();
         }
     }

@@ -48,18 +48,26 @@ import java.util.List;
                         .execute(new OkHttpUtils.OnCompleteListener<String>() {
                             @Override
                             public void onSuccess(String result) {
+                                boolean success =false;
                                 Result result1= ResultUtils.getListResultFromJson(result);
                                 if(result1!= null && result1.getError_code()==0){
                                     List<Question> list= result1.getResult();
                                     if(list!=null && list.size()>0){
-                                        Log.e("main", "resultQuestion=" + result);
+                                       // Log.e("main", "resultQuestion=" + result);
                                        ExamApplication.getInstance().setmExamList(list);
+                                        success=true;
                                     }
                                 }
+                                ExamApplication.getInstance()
+                                        .sendBroadcast(new Intent(ExamApplication.LOAD_EXAM_QUESTION)
+                                                .putExtra(ExamApplication.LOAD_DATA_SUCCESS,true));
                             }
 
                             public void onError(String error) {
-                                Log.e("main", "result=" + error);
+                                //Log.e("main", "result=" + error);
+                                ExamApplication.getInstance()
+                                        .sendBroadcast(new Intent(ExamApplication.LOAD_EXAM_QUESTION)
+                                                .putExtra(ExamApplication.LOAD_DATA_SUCCESS,false));
                             }
                         });
     }
