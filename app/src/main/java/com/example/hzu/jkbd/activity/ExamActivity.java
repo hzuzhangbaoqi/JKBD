@@ -84,15 +84,16 @@ public class ExamActivity extends AppCompatActivity{
             if (isLoadExamInfo && isLoadQuestions) {
                 layoutLoading.setVisibility(View.GONE);
                 ExamInfo examInfo = ExamApplication.getInstance().getmExamInfo();
-                // if (examInfo != null) {
+                 if (examInfo != null) {
                 showData(examInfo);
-                // }
+                 }
                 List<Question> examList = ExamApplication.getInstance().getmExamList();
-                //if (examList != null) {
+                if (examList != null) {
                 showExam(examList);
-                //}
+                }
             }
             else{
+                tvLoad.setText("下载失败,点击重新下载");
 
             }
         }
