@@ -30,7 +30,7 @@ import java.util.List;
  */
 
 public class ExamActivity extends AppCompatActivity{
-    TextView tvExamInfo,tvExamTitle,tvOp1,tvOp2,tvOp3,tvOp4,tvLoad;
+    TextView tvExamInfo,tvExamTitle,tvOp1,tvOp2,tvOp3,tvOp4,tvLoad,tvNo;
     LinearLayout layoutLoading;
     ImageView mImageView;
     ProgressBar dialog;
@@ -60,6 +60,7 @@ public class ExamActivity extends AppCompatActivity{
     }
 
     private void loadData() {
+        biz =new ExamBiz();
         layoutLoading.setEnabled(false);
         dialog.setVisibility(View.VISIBLE);
         tvLoad.setText("下载数据中...");
@@ -73,6 +74,7 @@ public class ExamActivity extends AppCompatActivity{
 
     private void initView() {
         layoutLoading=(LinearLayout) findViewById(R.id.layout_loading);
+        tvNo=(TextView) findViewById(R.id.tv_exam_no);
         tvExamInfo=(TextView) findViewById(R.id.tv_examinfo);
         tvExamTitle=(TextView) findViewById(R.id.tv_exam_title);
         dialog=(ProgressBar) findViewById(R.id.load_dialog);
@@ -115,19 +117,24 @@ public class ExamActivity extends AppCompatActivity{
     }
     private void showExam(Question exam) {
 
-        if (exam!=null){
+        if (exam != null) {
+            tvNo.setText(biz.getExamIndex());
             tvExamTitle.setText(exam.getQuestion());
             tvOp1.setText(exam.getItem1());
             tvOp2.setText(exam.getItem2());
             tvOp3.setText(exam.getItem3());
             tvOp4.setText(exam.getItem4());
-            Picasso.with(ExamActivity.this)
-                    .load(exam.getUrl())
-                    .into(mImageView);
+            if (exam.getUrl() != null && !exam.getUrl().equals("")) {
+                Picasso.with(ExamActivity.this)
+                        .load(exam.getUrl())
+                        .into(mImageView);
+            }
+            else {
+                mImageView.setVisibility(View.GONE);
+            }
+
         }
-
     }
-
     private void showData(ExamInfo examInfo) {
         tvExamInfo.setText(examInfo.toString());
     }
@@ -140,7 +147,12 @@ public class ExamActivity extends AppCompatActivity{
             unregisterReceiver(mLoadQuestionBroadcast);
         }
     }
-
+    public void preExam(View view){
+        showExam(biz.preQuestion());
+    }
+    public void nextExam(View view){
+        showExam(biz.nextQuestion());
+    }
     class LoadExamBroadcast extends BroadcastReceiver{
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -155,9 +167,7 @@ public class ExamActivity extends AppCompatActivity{
             initData();
         }
     }
-    public  void preExam(View view){
 
-    }
    class LoadQuestionBroadcast extends BroadcastReceiver{
         @Override
         public void onReceive(Context context, Intent intent) {
