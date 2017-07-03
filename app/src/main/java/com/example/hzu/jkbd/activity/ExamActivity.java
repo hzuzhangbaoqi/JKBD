@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.hzu.jkbd.ExamApplication;
@@ -32,7 +33,7 @@ public class ExamActivity extends AppCompatActivity{
     TextView tvExamInfo,tvExamTitle,tvOp1,tvOp2,tvOp3,tvOp4,tvLoad;
     LinearLayout layoutLoading;
     ImageView mImageView;
-
+    ProgressBar dialog;
     IExamBiz biz;
     boolean isLoadExamInfo=false;
     boolean isLoadQuestions=false;
@@ -49,6 +50,7 @@ public class ExamActivity extends AppCompatActivity{
         setListener();
         initView();
         loadData();
+        biz =new ExamBiz();
 
     }
 
@@ -58,7 +60,9 @@ public class ExamActivity extends AppCompatActivity{
     }
 
     private void loadData() {
-        biz =new ExamBiz();
+        layoutLoading.setEnabled(false);
+        dialog.setVisibility(View.VISIBLE);
+        tvLoad.setText("下载数据中...");
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -71,12 +75,19 @@ public class ExamActivity extends AppCompatActivity{
         layoutLoading=(LinearLayout) findViewById(R.id.layout_loading);
         tvExamInfo=(TextView) findViewById(R.id.tv_examinfo);
         tvExamTitle=(TextView) findViewById(R.id.tv_exam_title);
+        dialog=(ProgressBar) findViewById(R.id.load_dialog);
         tvOp1=(TextView) findViewById(R.id.tv_op1);
         tvOp2=(TextView) findViewById(R.id.tv_op2);
         tvOp3=(TextView) findViewById(R.id.tv_op3);
         tvOp4=(TextView) findViewById(R.id.tv_op4);
         tvLoad=(TextView)findViewById(R.id.tv_load);
         mImageView=(ImageView) findViewById(R.id.im_exam_image);
+        layoutLoading.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                loadData();
+
+            }
+        });
     }
 
     private void initData() {
@@ -93,6 +104,8 @@ public class ExamActivity extends AppCompatActivity{
                 }
             }
             else{
+                layoutLoading.setEnabled(true);
+                dialog.setVisibility(View.GONE);
                 tvLoad.setText("下载失败,点击重新下载");
 
             }
