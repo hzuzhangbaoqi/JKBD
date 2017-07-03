@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -31,6 +32,7 @@ import java.util.List;
 
 public class ExamActivity extends AppCompatActivity{
     TextView tvExamInfo,tvExamTitle,tvOp1,tvOp2,tvOp3,tvOp4,tvLoad,tvNo;
+    CheckBox cb01,cb02,cb03,cb04;
     LinearLayout layoutLoading;
     ImageView mImageView;
     ProgressBar dialog;
@@ -82,6 +84,10 @@ public class ExamActivity extends AppCompatActivity{
         tvOp2=(TextView) findViewById(R.id.tv_op2);
         tvOp3=(TextView) findViewById(R.id.tv_op3);
         tvOp4=(TextView) findViewById(R.id.tv_op4);
+        cb01=(CheckBox) findViewById(R.id.cb_01);
+        cb02=(CheckBox) findViewById(R.id.cb_02);
+        cb03=(CheckBox) findViewById(R.id.cb_03);
+        cb04=(CheckBox) findViewById(R.id.cb_04);
         tvLoad=(TextView)findViewById(R.id.tv_load);
         mImageView=(ImageView) findViewById(R.id.im_exam_image);
         layoutLoading.setOnClickListener(new View.OnClickListener(){
@@ -122,8 +128,25 @@ public class ExamActivity extends AppCompatActivity{
             tvExamTitle.setText(exam.getQuestion());
             tvOp1.setText(exam.getItem1());
             tvOp2.setText(exam.getItem2());
-            tvOp3.setText(exam.getItem3());
-            tvOp4.setText(exam.getItem4());
+            if(exam.getItem3().equals("")){
+                tvOp3.setVisibility(View.GONE);
+                cb03.setVisibility(View.GONE);
+            }else {
+                tvOp3.setText(exam.getItem3());
+                tvOp3.setVisibility(View.VISIBLE);
+                cb03.setVisibility(View.VISIBLE);
+            }
+            tvOp4.setVisibility(exam.getItem4().equals("")?View.VISIBLE:View.GONE);
+            cb01.setVisibility(exam.getItem4().equals("")?View.VISIBLE:View.GONE);
+            if(exam.getItem4().equals("")){
+                tvOp4.setVisibility(View.GONE);
+
+            }else {
+
+                tvOp4.setVisibility(View.VISIBLE);
+
+            }
+
             if (exam.getUrl() != null && !exam.getUrl().equals("")) {
                 Picasso.with(ExamActivity.this)
                         .load(exam.getUrl())
@@ -132,6 +155,7 @@ public class ExamActivity extends AppCompatActivity{
             else {
                 mImageView.setVisibility(View.GONE);
             }
+
 
         }
     }
