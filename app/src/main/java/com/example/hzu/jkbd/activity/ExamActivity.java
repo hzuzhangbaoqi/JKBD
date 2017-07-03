@@ -96,12 +96,13 @@ public class ExamActivity extends AppCompatActivity{
                 layoutLoading.setVisibility(View.GONE);
                 ExamInfo examInfo = ExamApplication.getInstance().getmExamInfo();
                  if (examInfo != null) {
-                showData(examInfo);
+                     showData(examInfo);
                  }
-                List<Question> examList = ExamApplication.getInstance().getmExamList();
-                if (examList != null) {
-                showExam(examList);
-                }
+
+               // List<Question> examList = ExamApplication.getInstance().getmExamList();
+                //if (examList != null) {
+                showExam(biz.getExam());
+              //  }
             }
             else{
                 layoutLoading.setEnabled(true);
@@ -112,15 +113,14 @@ public class ExamActivity extends AppCompatActivity{
         }
 
     }
-    private void showExam(List<Question> examList) {
-        Question exam = examList.get(0);
+    private void showExam(Question exam) {
+
         if (exam!=null){
             tvExamTitle.setText(exam.getQuestion());
             tvOp1.setText(exam.getItem1());
             tvOp2.setText(exam.getItem2());
             tvOp3.setText(exam.getItem3());
             tvOp4.setText(exam.getItem4());
-
             Picasso.with(ExamActivity.this)
                     .load(exam.getUrl())
                     .into(mImageView);
@@ -154,6 +154,9 @@ public class ExamActivity extends AppCompatActivity{
             isLoadExamInfoReceiver=true;
             initData();
         }
+    }
+    public  void preExam(View view){
+
     }
    class LoadQuestionBroadcast extends BroadcastReceiver{
         @Override

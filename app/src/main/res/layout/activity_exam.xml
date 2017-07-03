@@ -172,6 +172,7 @@
             android:drawableLeft="@mipmap/exam_pre32x32"
             android:background="@null"
             android:text="上一题"
+            android:onClick="preExam"
             android:layout_alignParentLeft="true"
             android:layout_margin="20dp"/>
         <Button
