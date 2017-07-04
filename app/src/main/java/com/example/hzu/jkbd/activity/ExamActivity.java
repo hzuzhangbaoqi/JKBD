@@ -168,7 +168,7 @@ public class ExamActivity extends AppCompatActivity{
     }
 
     private void initTimer(ExamInfo examInfo) {
-        int sumTime=examInfo.getLimitTime()*60*100;
+        int sumTime=examInfo.getLimitTime()*60*1000;
         final long overTime=(long)(sumTime+System.currentTimeMillis());
         final Timer timer=new Timer();
 
