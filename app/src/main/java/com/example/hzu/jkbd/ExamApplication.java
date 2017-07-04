@@ -38,9 +38,6 @@ public class ExamApplication extends Application {
         return instance;
     }
 
-
-
-
     public ExamInfo getmExamInfo() {
         return mExamInfo;
     }
