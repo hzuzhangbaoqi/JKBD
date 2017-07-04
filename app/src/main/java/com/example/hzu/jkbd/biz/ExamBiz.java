@@ -1,5 +1,7 @@
 package com.example.hzu.jkbd.biz;
 
+import android.util.Log;
+
 import com.example.hzu.jkbd.ExamApplication;
 import com.example.hzu.jkbd.bean.Question;
 import com.example.hzu.jkbd.dao.ExamDao;
@@ -60,9 +62,11 @@ public class ExamBiz implements IExamBiz{
     public int commitExam() {
         int s =0;
         for (Question question : examList) {
-            String userAnswer = getExam().getUserAnswer();
+            String userAnswer = question.getUserAnswer();
+
             if (userAnswer!=null && !userAnswer.equals("")){
                 if (question.getAnswer().equals(userAnswer)){
+
                     s++;
                 }
             }
