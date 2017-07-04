@@ -33,7 +33,7 @@ import java.util.List;
 public class ExamActivity extends AppCompatActivity{
     TextView tvExamInfo,tvExamTitle,tvOp1,tvOp2,tvOp3,tvOp4,tvLoad,tvNo;
     CheckBox cb01,cb02,cb03,cb04;
-    LinearLayout layoutLoading;
+    LinearLayout layoutLoading,layout03,layout04;
     ImageView mImageView;
     ProgressBar dialog;
     IExamBiz biz;
@@ -76,6 +76,8 @@ public class ExamActivity extends AppCompatActivity{
 
     private void initView() {
         layoutLoading=(LinearLayout) findViewById(R.id.layout_loading);
+        layout03=(LinearLayout) findViewById(R.id.layout_03);
+        layout04=(LinearLayout) findViewById(R.id.layout_04);
         tvNo=(TextView) findViewById(R.id.tv_exam_no);
         tvExamInfo=(TextView) findViewById(R.id.tv_examinfo);
         tvExamTitle=(TextView) findViewById(R.id.tv_exam_title);
@@ -128,25 +130,12 @@ public class ExamActivity extends AppCompatActivity{
             tvExamTitle.setText(exam.getQuestion());
             tvOp1.setText(exam.getItem1());
             tvOp2.setText(exam.getItem2());
-            if(exam.getItem3().equals("")){
-                tvOp3.setVisibility(View.GONE);
-                cb03.setVisibility(View.GONE);
-            }else {
-                tvOp3.setText(exam.getItem3());
-                tvOp3.setVisibility(View.VISIBLE);
-                cb03.setVisibility(View.VISIBLE);
-            }
-            tvOp4.setVisibility(exam.getItem4().equals("")?View.VISIBLE:View.GONE);
-            cb01.setVisibility(exam.getItem4().equals("")?View.VISIBLE:View.GONE);
-            if(exam.getItem4().equals("")){
-                tvOp4.setVisibility(View.GONE);
-
-            }else {
-
-                tvOp4.setVisibility(View.VISIBLE);
-
-            }
-
+            tvOp3.setText(exam.getItem3());
+            tvOp4.setText(exam.getItem4());
+            layout03.setVisibility(exam.getItem3().equals("")?View.GONE:View.VISIBLE);
+            cb03.setVisibility(exam.getItem3().equals("")?View.GONE:View.VISIBLE);
+            layout04.setVisibility(exam.getItem4().equals("")?View.GONE:View.VISIBLE);
+            cb04.setVisibility(exam.getItem4().equals("")?View.GONE:View.VISIBLE);
             if (exam.getUrl() != null && !exam.getUrl().equals("")) {
                 Picasso.with(ExamActivity.this)
                         .load(exam.getUrl())
