@@ -202,7 +202,7 @@ public class ExamActivity extends AppCompatActivity{
 
 
     private void showExam(Question exam) {
-        Log.e("123","exxam="+exam);
+        //Log.e("123","exxam="+exam);
         if (exam != null) {
             tvNo.setText(biz.getExamIndex());
             tvExamTitle.setText(exam.getQuestion());
@@ -210,15 +210,19 @@ public class ExamActivity extends AppCompatActivity{
             tvOp2.setText(exam.getItem2());
             tvOp3.setText(exam.getItem3());
             tvOp4.setText(exam.getItem4());
+
             layout03.setVisibility(exam.getItem3().equals("")?View.GONE:View.VISIBLE);
             cb03.setVisibility(exam.getItem3().equals("")?View.GONE:View.VISIBLE);
             layout04.setVisibility(exam.getItem4().equals("")?View.GONE:View.VISIBLE);
             cb04.setVisibility(exam.getItem4().equals("")?View.GONE:View.VISIBLE);
             tvTime = (TextView) findViewById(R.id.tv_time);
+            //Log.e("image","exam"+exam.getUrl());
             if (exam.getUrl() != null && !exam.getUrl().equals("")) {
+                mImageView.setVisibility(View.VISIBLE);
                 Picasso.with(ExamActivity.this)
                         .load(exam.getUrl())
                         .into(mImageView);
+                //Log.e("image","exam"+exam.getUrl());
             }
             else {
                 mImageView.setVisibility(View.GONE);
@@ -244,7 +248,7 @@ public class ExamActivity extends AppCompatActivity{
             if (cbs[i].isChecked()) {
 
                 biz.getExam().setUserAnswer(String.valueOf(i + 1));
-                Log.e("9999999","getAnswer"+String.valueOf(i + 1));
+               // Log.e("9999999","getAnswer"+String.valueOf(i + 1));
                 return;
             }
         }
