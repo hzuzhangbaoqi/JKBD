@@ -264,12 +264,15 @@ public class ExamActivity extends AppCompatActivity{
         for (int i=0;i<cbs.length;i++) {
 
             if (cbs[i].isChecked()) {
-
                 biz.getExam().setUserAnswer(String.valueOf(i + 1));
-               // Log.e("9999999","getAnswer"+String.valueOf(i + 1));
+                mAdapter.notifyDataSetChanged();
                 return;
             }
         }
+        Log.e("123123","Dao"+biz.getExam());
+        biz.getExam().setUserAnswer("");
+        mAdapter.notifyDataSetChanged();
+        Log.e("456789","Dao"+biz.getExam());
     }
     private void showData(ExamInfo examInfo) {
         tvExamInfo.setText(examInfo.toString());
