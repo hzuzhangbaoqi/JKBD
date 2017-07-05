@@ -76,7 +76,6 @@ public class ExamBiz implements IExamBiz{
 
             if (userAnswer!=null && !userAnswer.equals("")){
                 if (question.getAnswer().equals(userAnswer)){
-
                     s++;
                 }
             }

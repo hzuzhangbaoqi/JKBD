@@ -312,7 +312,9 @@ public class ExamActivity extends AppCompatActivity{
                                 finish();
                             }
                         });
+
         builder.create().show();
+
 
     }
     class LoadExamBroadcast extends BroadcastReceiver{
