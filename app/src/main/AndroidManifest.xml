@@ -23,7 +23,10 @@
             </intent-filter>
 
         </activity>
-      <activity android:name=".activity.ExamActivity"/>
+      <activity android:name=".activity.ExamActivity"
+          android:screenOrientation="portrait"/>
+          android:scr
+
 
     </application>
 

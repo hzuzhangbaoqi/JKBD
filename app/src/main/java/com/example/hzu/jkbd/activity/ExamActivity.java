@@ -84,9 +84,8 @@ public class ExamActivity extends AppCompatActivity {
         mLoadQuestionBroadcast = new LoadQuestionBroadcast();
         setListener();
         initView();
-        loadData();
         biz = new ExamBiz();
-
+        loadData();
     }
 
     private void setListener() {
