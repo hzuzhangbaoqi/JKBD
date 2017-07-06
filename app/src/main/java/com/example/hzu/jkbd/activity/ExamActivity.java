@@ -331,6 +331,7 @@ public class ExamActivity extends AppCompatActivity {
 
             if (cbs[i].isChecked()) {
                 biz.getExam().setUserAnswer(String.valueOf(i + 1));
+                setOptions(true);
                 mAdapter.notifyDataSetChanged();
                 return;
             }
